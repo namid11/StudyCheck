@@ -13,6 +13,7 @@ exports.receive_message = (req, res) => {
     console.log(req.body);
     if (req.body.events) {
       const token = req.body.events[0].replyToken;
+      console.log(req.body.events[0].source);
       console.log("[LOG] token : " + token);
       
       const headers = {
