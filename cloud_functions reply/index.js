@@ -23,8 +23,9 @@ exports.receive_message = (req, res) => {
       'Authorization': 'Bearer j8ohRkKdBvzs78bh8AR91vRZ1eisK+/63sp9VxqGoDbCNuJ8BQD912zzU6nIe7UFioKRDBgihOdriZ2JrCQe0UIZgsv2usXfVaZ2w328+TLaS5gCguYaanFcXtbfyKvP6rAlJ1yKlyeWeSC8O4qxro9PbdgDzCFqoOLOYbqAITQ='
     };
 
+    // バブルの中身を設定
     const bubble_objs = [
-      msg_format_module.bubble_template("AAA", "google drive はいいぞー"),
+      msg_format_module.bubble_template("AAA", ["google drive はいいぞー", "でも重いぞー"]),
       msg_format_module.bubble_template("BBB", "OneDrive もええぞー"),
       msg_format_module.bubble_template("CCC", "Googleフォトには感謝しかないです...")
     ];
