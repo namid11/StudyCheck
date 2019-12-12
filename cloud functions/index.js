@@ -25,8 +25,8 @@ exports.receive_message = (req, res) => {
         'replyToken': token,
         'messages': [
           {
-              "type": "text",
-              "text": "やっほー"
+            "type": "text",
+            "text": "やっほー"
           }  
         ]
       }
