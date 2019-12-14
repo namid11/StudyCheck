@@ -1,4 +1,7 @@
 
+// const fs = require('fs-extra')
+// const jsonData = JSON.parse(fs.readFileSync('static/TaskDataFormat.json'))
+
 export default {
   mode: 'universal',
   /*
@@ -36,6 +39,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~/plugins/T_TaskFileLoader.js', mode: 'server' }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -56,5 +60,9 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+
+  env: {
+    // jsonData: jsonData,
   }
 }

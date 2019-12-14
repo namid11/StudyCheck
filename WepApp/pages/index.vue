@@ -1,60 +1,35 @@
 <template>
   <div>
+    <!-- TOP -->
     <div class="jumbotron">
-      <div class="container">
+      <div class="container header">
         <h1 class="display-4">課題一覧</h1>
-        <p class="lead">
-          課題の確認、追加、削除ができるページです。<br>
-          このページは教師のみが閲覧できます。</p>
-        <hr class="my-3">
+        <p class="title-sub-text">
+          課題の確認、追加、削除ができるページです。
+          <br />このページは教師のみが閲覧できます。
+        </p>
+        <hr class="my-3" />
         <p>More info</p>
         <p class="lead">
           <a class="btn btn-primary btn-lg" href="#" role="button">Jumbo action name</a>
         </p>
       </div>
     </div>
+
+    <!-- Main Container -->
     <div class="main container">
-      <div class="bg-white rounded box-shadow row">
-        <div class="col-md-4 col-lg-3">
-          <div class="card m-2 p-0 box-shadow">
-            <div class="card-header bg-primary text-light">
-              <h5>Subject</h5>
-            </div>
-            <div class="card-body">
-              <p class="card-text">Homework Context</p>
-              <p class="card-text">Homework Context</p>
-            </div>
-            <div class="card-footer text-muted">
-              2019/11/30
-            </div>
+      <div v-for="(task_data_list, key_date) in getJsonData" :key="key_date">
+        <div class="bg-white row p-3">
+          <div class="col-md-12">
+            <h2 class="px-3">{{key_date}}</h2>
+            <hr>
           </div>
-        </div>
-        <div class="col-md-4 col-lg-3">
-          <div class="card m-2 p-0 box-shadow">
-            <div class="card-header bg-primary text-light">
-              <h5>Subject</h5>
-            </div>
-            <div class="card-body">
-              <p class="card-text">Homework Context</p>
-              <p class="card-text">Homework Context</p>
-            </div>
-            <div class="card-footer text-muted">
-              2019/11/30
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-3">
-          <div class="card m-2 p-0 box-shadow">
-            <div class="card-header bg-primary text-light">
-              <h5>Subject</h5>
-            </div>
-            <div class="card-body">
-              <p class="card-text">Homework Context</p>
-              <p class="card-text">Homework Context</p>
-            </div>
-            <div class="card-footer text-muted">
-              2019/11/30
-            </div>
+          <div class="col-md-4" v-for="(task_data, index) in task_data_list" :key="index">
+            <task-card
+              :tasks="task_data.tasks"
+              :subject="task_data.subject"
+              :deadline_date="task_data.deadline_date"
+            />
           </div>
         </div>
       </div>
@@ -62,14 +37,51 @@
   </div>
 </template>
 
+
 <script>
+import TaskCard from "~/components/TaskCard.vue";
+
+// const fse = process.server ? require("fs-extra") : null;
+// const jsonData = JSON.parse(fse.readFileSync("assets/TaskDataFormat.json"));
 
 export default {
   components: {
-  }
-}
+    TaskCard
+  },
+  data() {
+    return {
+      task_list: ["hogehoge", "piyopiyo", "fugafuga"],
+    };
+  },
+  created() {
+    console.log("Created");
+    console.log(this.getJsonData);
+  },
+  asyncData({ params }) {
+    return {};
+  },
+  computed: {
+    getJsonData: function() {
+      if (this.$jsonData) {
+        this.$store.commit('T_TaskFile/updateTaskData', this.$jsonData);
+        return this.$store.getters['T_TaskFile/taskJson'];
+      } else {
+        return this.$store.getters['T_TaskFile/taskJson'];
+      }
+    }
+  },
+};
 </script>
 
 <style scoped>
-
+.header h1 {
+  letter-spacing: 0.1em;
+}
+.title-sub-text {
+  letter-spacing: 0em;
+  line-height: 1.8rem;
+  color: #333;
+  font-family: Quicksand, 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-size: 1.2rem;
+}
 </style>
