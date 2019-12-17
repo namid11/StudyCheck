@@ -6,7 +6,7 @@
  */
 
 const request = require('request');
-const msg_format_module = require('./flex_message_format');
+const { RootModel, MsgListModel, MsgModel, CarouselModel, BubbleModel, TextModel, TextLineModel, ButtonModel, ComponentModel, HeaderModel, BodyModel, FooterModel } = require('./flex_message_format');
 
 
 // Called Function
@@ -24,12 +24,8 @@ exports.pushMessage = (req, res) => {
       'Authorization': 'Bearer j8ohRkKdBvzs78bh8AR91vRZ1eisK+/63sp9VxqGoDbCNuJ8BQD912zzU6nIe7UFioKRDBgihOdriZ2JrCQe0UIZgsv2usXfVaZ2w328+TLaS5gCguYaanFcXtbfyKvP6rAlJ1yKlyeWeSC8O4qxro9PbdgDzCFqoOLOYbqAITQ='
     };
 
-    // バブルの中身を設定
-    const bubble_objs = [
-      msg_format_module.bubble_template("AAA", ["google drive はいいぞー", "でも重いぞー"]),
-      msg_format_module.bubble_template("BBB", "OneDrive もええぞー"),
-      msg_format_module.bubble_template("CCC", "Googleフォトには感謝しかないです...")
-    ];
+    // FlexMessage作成
+    const carousel_msg = new CarouselModel();
 
     let option = {
       "url": "https://api.line.me/v2/bot/message/reply",
