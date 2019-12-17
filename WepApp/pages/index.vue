@@ -54,8 +54,6 @@ export default {
     };
   },
   created() {
-    console.log("Created");
-    console.log(this.getJsonData);
   },
   asyncData({ params }) {
     return {};

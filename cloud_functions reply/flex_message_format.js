@@ -94,7 +94,7 @@ var text_list_template = function (texts) {
       'contents': [
         {
           'type': 'icon',
-          'url': 'https://storage.googleapis.com/studycheck_storage/check_.png'
+          'url': 'https://storage.googleapis.com/studycheck_bucket_ex/check_.png'
         },
         text_temp
       ]
@@ -109,6 +109,7 @@ var text_list_template = function (texts) {
 var bubble_template = function (header = "HEADER", texts = "Text Message") {
   const bubble = {
     "type": "bubble",
+    "size": "kilo",
     "header": {
       "type": "box",
       "layout": "vertical",
@@ -126,7 +127,7 @@ var bubble_template = function (header = "HEADER", texts = "Text Message") {
     },
     "hero": {
       "type": "image",
-      "url": "https://storage.googleapis.com/studycheck_storage/english_hero.png",
+      "url": "https://storage.googleapis.com/studycheck_bucket_ex/english_hero.png",
       "size": "full",
       "aspectRatio": "4:3",
       "aspectMode": "cover"
@@ -159,6 +160,16 @@ var bubble_template = function (header = "HEADER", texts = "Text Message") {
   };
 
   return bubble;
+}
+
+
+class RootMsg {
+  static format(token, msgs) {
+    return {
+      'replyToken': token,
+      'messages': msgs
+    }
+  }
 }
 
 

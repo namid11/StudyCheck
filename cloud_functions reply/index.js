@@ -6,10 +6,11 @@
  */
 
 const request = require('request');
-
 const msg_format_module = require('./flex_message_format');
 
-exports.receive_message = (req, res) => {
+
+// Called Function
+exports.pushMessage = (req, res) => {
   const message = req.query.message || req.body.message || 'Hello World!';
   //token = body['events'][0]['replyToken']#replyTokenの値取得
   console.log(req.body);
