@@ -189,7 +189,7 @@ class MsgListModel {
   }
 
   // MsgList追加オブジェクト
-  set setMsg(vMsgModel_List) {
+  set setMsgList(vMsgModel_List) {
     for (const msgModel of vMsgModel_List) {
       this.msg_list.push(msgModel.format());
     }
@@ -402,9 +402,9 @@ class HeroImageModel extends ComponentModel {
 
 // Bodyモデル
 class BodyModel extends ComponentModel {
-  constructor(layout="vertical", vMsgModel=null) {
+  constructor(layout="vertical", vMsgListModel=null) {
     super(type="box", layout=layout);
-    this.vContentsModel = vMsgModel;
+    this.vContentsModel = vMsgListModel;
   }
 
   set setContents(vMsgModel) {
@@ -453,7 +453,7 @@ module.exports = {
   BubbleModel: BubbleModel,
   TextModel: TextModel,
   TextLineModel: TextLineModel,
-  ButtonModel: BubbleModel,
+  ButtonModel: ButtonModel,
   ComponentModel: ComponentModel,
   HeaderModel: HeaderModel,
   HeroImageModel: HeroImageModel,
